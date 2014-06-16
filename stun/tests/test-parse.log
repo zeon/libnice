@@ -1,0 +1,152 @@
+Comparing username '0x926b2b3e6aa54358a85125a6f79c0ae7d886f776f9cd8a2e45d7cbbbaee503c33a323aa99eb77b32e3f3a6c0e8544bef52d2e2c043c24cbcafd9f2fa488b8ce66214643a32000000' (72) with '0x926b2b3e6aa54358a85125a6f79c0ae7d886f776f9cd8a2e45d7cbbbaee503c33a323aa99eb77b32e3f3a6c0e8544bef52d2e2c043c24cbcafd9f2fa488b8ce66214643a32000000' (72) : 0
+Found valid username, returning password : 'wÙzéÏà>¢( ]ìÏ6èIPoÿ'
+ Message HMAC-SHA1 fingerprint:
+key     : 0x77d97ae9cfe03ea228a05deccf36e849
+  expected: 0xf74681c46f4c215cf68ec0810e203fb1b1ada48a
+  received: 0xf74681c46f4c215cf68ec0810e203fb1b1ada48a
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+STUN error: No data!
+STUN error: RTP or other non-protocol packet!
+STUN error: 4 instead of 8 bytes for attribute!
+STUN error: Invalid message length: 25!
+STUN error: Incomplete message: 27 of 28 bytes!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete message: 4 of 20 bytes!
+STUN error: Incomplete message: 5 of 20 bytes!
+STUN error: Incomplete message: 6 of 20 bytes!
+STUN error: Incomplete message: 7 of 20 bytes!
+STUN error: Incomplete message: 8 of 20 bytes!
+STUN error: Incomplete message: 9 of 20 bytes!
+STUN error: Incomplete message: 10 of 20 bytes!
+STUN error: Incomplete message: 11 of 20 bytes!
+STUN error: Incomplete message: 12 of 20 bytes!
+STUN error: Incomplete message: 13 of 20 bytes!
+STUN error: Incomplete message: 14 of 20 bytes!
+STUN error: Incomplete message: 15 of 20 bytes!
+STUN error: Incomplete message: 16 of 20 bytes!
+STUN error: Incomplete message: 17 of 20 bytes!
+STUN error: Incomplete message: 18 of 20 bytes!
+STUN error: Incomplete message: 19 of 20 bytes!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete message: 4 of 20 bytes!
+STUN error: Incomplete message: 5 of 20 bytes!
+STUN error: Incomplete message: 6 of 20 bytes!
+STUN error: Incomplete message: 7 of 20 bytes!
+STUN error: Incomplete message: 8 of 20 bytes!
+STUN error: Incomplete message: 9 of 20 bytes!
+STUN error: Incomplete message: 10 of 20 bytes!
+STUN error: Incomplete message: 11 of 20 bytes!
+STUN error: Incomplete message: 12 of 20 bytes!
+STUN error: Incomplete message: 13 of 20 bytes!
+STUN error: Incomplete message: 14 of 20 bytes!
+STUN error: Incomplete message: 15 of 20 bytes!
+STUN error: Incomplete message: 16 of 20 bytes!
+STUN error: Incomplete message: 17 of 20 bytes!
+STUN error: Incomplete message: 18 of 20 bytes!
+STUN error: Incomplete message: 19 of 20 bytes!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete STUN message header!
+STUN error: Incomplete message: 4 of 36 bytes!
+STUN error: Incomplete message: 5 of 36 bytes!
+STUN error: Incomplete message: 6 of 36 bytes!
+STUN error: Incomplete message: 7 of 36 bytes!
+STUN error: Incomplete message: 8 of 36 bytes!
+STUN error: Incomplete message: 9 of 36 bytes!
+STUN error: Incomplete message: 10 of 36 bytes!
+STUN error: Incomplete message: 11 of 36 bytes!
+STUN error: Incomplete message: 12 of 36 bytes!
+STUN error: Incomplete message: 13 of 36 bytes!
+STUN error: Incomplete message: 14 of 36 bytes!
+STUN error: Incomplete message: 15 of 36 bytes!
+STUN error: Incomplete message: 16 of 36 bytes!
+STUN error: Incomplete message: 17 of 36 bytes!
+STUN error: Incomplete message: 18 of 36 bytes!
+STUN error: Incomplete message: 19 of 36 bytes!
+STUN error: Incomplete message: 20 of 36 bytes!
+STUN error: Incomplete message: 21 of 36 bytes!
+STUN error: Incomplete message: 22 of 36 bytes!
+STUN error: Incomplete message: 23 of 36 bytes!
+STUN error: Incomplete message: 24 of 36 bytes!
+STUN error: Incomplete message: 25 of 36 bytes!
+STUN error: Incomplete message: 26 of 36 bytes!
+STUN error: Incomplete message: 27 of 36 bytes!
+STUN error: Incomplete message: 28 of 36 bytes!
+STUN error: Incomplete message: 29 of 36 bytes!
+STUN error: Incomplete message: 30 of 36 bytes!
+STUN error: Incomplete message: 31 of 36 bytes!
+STUN error: Incomplete message: 32 of 36 bytes!
+STUN error: Incomplete message: 33 of 36 bytes!
+STUN error: Incomplete message: 34 of 36 bytes!
+STUN error: Incomplete message: 35 of 36 bytes!
+STUN demux error: no FINGERPRINT attribute!
+STUN demux error: no cookie!
+STUN demux error: bad fingerprint: 0x78cd9104, expected: 0x78cc9104!
+STUN demux error: bad fingerprint: 0x00000000, expected: 0xd3459895!
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x6261645f5f677579
+  expected: 0x6f1e623958c702f1f38201bc392a8c3f213d28a3
+  received: 0x0bc4b20c9458bb25a3221ac8e18732363afce2c3
+STUN auth error: SHA1 fingerprint mismatch!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x676f6f645f677579
+  expected: 0x0bc4b20c9458bb25a3221ac8e18732363afce2c3
+  received: 0x0bc4b20c9458bb25a3221ac8e18732363afce2c3
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  expected: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+  received: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  expected: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+  received: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  sent    : 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+ Message HMAC-SHA1 fingerprint: 0xad8a85ff
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  expected: 0x7db7fc5270c6db1fc32634bb4c646ee71db3784a
+  received: 0x7db7fc5270c6db1fc32634bb4c646ee71db3784a
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+STUN demux: OK!
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  expected: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+  received: 0x624eebdc3cc92dd84b74bf85d1c0f5de3687bd33
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0xad8a85ff
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x564f6b4a7862526c31526d5478556b2f57764a784274
+  expected: 0x21cbbd251a8c4c388cc5cdb3276af561b221c82b
+  received: 0x21cbbd251a8c4c388cc5cdb3276af561b221c82b
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+key for user:realm:pass is : 0x8493fbc53ba582fb4c044c456bdc40eb
+
+RFC key for user:realm:pass is : 0x8493fbc53ba582fb4c044c456bdc40eb
+
+Attribute test message length: 128
+Checking test vectors...
+Done.
+Testing long term credentials hash algorithm...
+Done!

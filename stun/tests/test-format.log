@@ -1,0 +1,91 @@
+ Message HMAC-SHA1 fingerprint: 0x736e40fc
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0xf962ee73ca211709b0dcae6b82c2c6f315fbd961
+ Message HMAC-SHA1 fingerprint: 0x6981bf2c
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x73336b723374
+  expected: 0xf962ee73ca211709b0dcae6b82c2c6f315fbd961
+  received: 0xf962ee73ca211709b0dcae6b82c2c6f315fbd961
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0x16097bba
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0x4e5f62f0b22c5a10b76f3c2ccac9102984fb6111
+ Message HMAC-SHA1 fingerprint: 0x83bc175c
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x73336b723374
+  expected: 0x4e5f62f0b22c5a10b76f3c2ccac9102984fb6111
+  received: 0x4e5f62f0b22c5a10b76f3c2ccac9102984fb6111
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0xb8761351
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0xd3d05fceafdc6a1347972a6a40a04348db89da5a
+ Message HMAC-SHA1 fingerprint: 0xd4f685f8
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x73336b723374
+  expected: 0xd3d05fceafdc6a1347972a6a40a04348db89da5a
+  received: 0xd3d05fceafdc6a1347972a6a40a04348db89da5a
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0x5eb7f0bb
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0x2b5fcc90aabe08dbb47573327fcd652fe168be2b
+ Message HMAC-SHA1 fingerprint: 0x79867eac
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0x1aeed55c
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0xb938b4a0d5500fba4d3d72557c05a61092d3c6a1
+ Message HMAC-SHA1 fingerprint: 0xb8da174f
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x73336b723374
+  expected: 0xb938b4a0d5500fba4d3d72557c05a61092d3c6a1
+  received: 0xb938b4a0d5500fba4d3d72557c05a61092d3c6a1
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0x390f5107
+STUN demux: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x73336b723374
+  sent    : 0x33aa830885324b5a95a84517effb5427dec253b1
+ Message HMAC-SHA1 fingerprint: 0xa8542a40
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x73336b723374
+  expected: 0x33aa830885324b5a95a84517effb5427dec253b1
+  received: 0x33aa830885324b5a95a84517effb5427dec253b1
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+Built message of 28 bytes
+Built message of 64 bytes
+Built message of 28 bytes
+Built message of 64 bytes
+Built message of 28 bytes
+Built message of 64 bytes
+Built message of 48 bytes
+Built message of 84 bytes
+Built message of 28 bytes
+Built message of 64 bytes
+Built message of 52 bytes
+Built message of 88 bytes

@@ -1,0 +1,102 @@
+ Message HMAC-SHA1 fingerprint: 0x4c78ea7d
+STUN Reply (buffer size = 65552)...
+ Unhandled non-request (class 2) message.
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0x9be097a66e43c6491b6fd2630fd3ee0f1e48b8a7
+ Message HMAC-SHA1 fingerprint: 0xff337bfd
+STUN Reply (buffer size = 65552)...
+ Bad request (method 1638) message.
+STUN Error Reply (buffer size: 65552)...
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0x3c563b3138efa8fc10c9650b64ebe6ebd8aea4cc
+ Message HMAC-SHA1 fingerprint: 0x90f10c40
+ Error response (400) of 72 bytes
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xd80087ad9286a9ef290656b5ba9e9b57a283c0be
+ Message HMAC-SHA1 fingerprint: 0xb2dc196f
+STUN demux: OK!
+Comparing username '0x4c3a52' (3) with '0x4c' (1) : 14848
+Comparing username '0x4c3a52' (3) with '0x4c3a52' (3) : 0
+Found valid username, returning password : 'secret'
+ Message HMAC-SHA1 fingerprint:
+key     : 0x736563726574
+  expected: 0xd80087ad9286a9ef290656b5ba9e9b57a283c0be
+  received: 0xd80087ad9286a9ef290656b5ba9e9b57a283c0be
+STUN auth: OK!
+STUN unknown: attribute 0x0666(27 bytes)
+STUN unknown: 1 mandatory attribute(s)!
+ Message HMAC-SHA1 fingerprint: 0xbf31e792
+STUN demux: OK!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xa429d71cb61f5a24ff87813ea42b9bfb7109c712
+ Message HMAC-SHA1 fingerprint: 0x1ca139a8
+STUN demux: OK!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0x944a8819d761efa824f17cb84bbeb926b32ee9b3
+ Message HMAC-SHA1 fingerprint: 0xecd76e07
+STUN Reply (buffer size = 65552)...
+STUN Role not specified by peer!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xd4a1edf278eed01399099845318bf13a7208dbd7
+ Message HMAC-SHA1 fingerprint: 0xe9616059
+ All done (response size: 72)
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x736563726574
+  expected: 0xd4a1edf278eed01399099845318bf13a7208dbd7
+  received: 0xd4a1edf278eed01399099845318bf13a7208dbd7
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xaccc208b2d462faae4e6746d26c3d1dd80f07399
+ Message HMAC-SHA1 fingerprint: 0x1a21e1e0
+STUN Reply (buffer size = 65552)...
+STUN Role not specified by peer!
+ Mapped address problem: 4
+ Fatal error formatting Response: 4
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xda8dd31513aff44d3d3b641a212878eac5cf6273
+ Message HMAC-SHA1 fingerprint: 0xcbe6b59b
+STUN Reply (buffer size = 65552)...
+STUN Role Conflict detected:
+ switching role from "controlling" to "controlled"
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0xce4f4b2b0d29e6cfe23c364ae403566239735f65
+ Message HMAC-SHA1 fingerprint: 0x46983aac
+ All done (response size: 72)
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x736563726574
+  expected: 0xce4f4b2b0d29e6cfe23c364ae403566239735f65
+  received: 0xce4f4b2b0d29e6cfe23c364ae403566239735f65
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0x431ddbc2860ee4ba0769b40e266f4787ee9c8b87
+ Message HMAC-SHA1 fingerprint: 0x15268468
+STUN Reply (buffer size = 65552)...
+STUN Role Conflict detected:
+ staying "controlled" (sending error)
+STUN Error Reply (buffer size: 65552)...
+ Message HMAC-SHA1 message integrity:
+  key     : 0x736563726574
+  sent    : 0x57e342219b1b332261f2f5e708edd84e1ba6374a
+ Message HMAC-SHA1 fingerprint: 0xbe4522ca
+ Error response (487) of 76 bytes
+STUN demux: OK!
+ Message HMAC-SHA1 fingerprint:
+key     : 0x736563726574
+  expected: 0x57e342219b1b332261f2f5e708edd84e1ba6374a
+  received: 0x57e342219b1b332261f2f5e708edd84e1ba6374a
+STUN auth: OK!
+STUN unknown: 0 mandatory attribute(s)!

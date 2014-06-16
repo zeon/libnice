@@ -1,0 +1,10 @@
+HMAC of 'world' with key 'hello' is : 0x8a3a84bcd0d0065e97f175d370447c7d02e00973
+Expected : 0x8a3a84bcd0d0065e97f175d370447c7d02e00973
+SHA1 of 'abc' : 0xa9993e364706816aba3e25717850c26c9cd0d89d
+Expected : 0xa9993e364706816aba3e25717850c26c9cd0d89d
+MD5 of 'abc' : 0x0x900150983cd24fb0d6963f7d28e17f72
+Expected : 0x900150983cd24fb0d6963f7d28e17f72
+SHA1 of 'abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq' : 0x84983e441c3bd26ebaae4aa1f95129e5e54670f1
+Expected : 0x84983e441c3bd26ebaae4aa1f95129e5e54670f1
+MD5 of 'abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq' : 0x0x8215ef0796a20bcaaae116d3876c664a
+Expected : 0x8215ef0796a20bcaaae116d3876c664a

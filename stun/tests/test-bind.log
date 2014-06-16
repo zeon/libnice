@@ -1,0 +1,28 @@
+STUN transaction failed: couldn't create transport.
+STUN transaction failed: couldn't create transport.
+STUN transaction failed: couldn't create transport.
+STUN unknown: 0 mandatory attribute(s)!
+STUN unknown: 0 mandatory attribute(s)!
+ STUN error message received (code: 500)
+STUN unknown: 0 mandatory attribute(s)!
+STUN unknown: 0 mandatory attribute(s)!
+Received 20-bytes STUN message
+ No XOR-MAPPED-ADDRESS: 1
+ No MAPPED-ADDRESS: 1
+STUN unknown: 0 mandatory attribute(s)!
+STUN unknown: 0 mandatory attribute(s)!
+Received 44-bytes STUN message
+ No XOR-MAPPED-ADDRESS: 1
+ Mapped address found!
+STUN transaction started (timeout 600ms).
+STUN transaction retransmitted (timeout 1199ms).
+STUN transaction retransmitted (timeout 2398ms).
+STUN transaction retransmitted (timeout 4799ms).
+STUN transaction failed: time out.
+Bad socket family test... OK
+Too small server address test... OK
+Too big server address test... OK
+Bad responses test... OK
+Error responses test... OK
+Keep alives test... OK
+Binding discovery timeout test... OK
