@@ -49,7 +49,7 @@
 #define CHUNK_SIZE 1024
 
 static GMainLoop *gloop;
-GIOChannel *io_stdin, *io_in_file;
+static GIOChannel* io_stdin, io_in_file;
 static guint stream_id;
 
 static int sockfd = 0;
@@ -61,14 +61,11 @@ static FILE *in = NULL;
 static FILE *out = NULL;
 static off_t file_size;
 static char* file_name;
-
-static int hasFileAsInut = FALSE;
+static int has_file_input = FALSE;
+static int global_ragent_read = 0;
 
 static const gchar *candidate_type_name[] = {"host", "srflx", "prflx", "relay"};
-
-static const gchar *state_name[] = {"disconnected", "gathering", "connecting",
-                                    "connected", "ready", "failed"};
-
+static const gchar *state_name[] = {"disconnected", "gathering", "connecting", "connected", "ready", "failed"};
 static int print_local_data(NiceAgent *agent, guint stream_id,
     guint component_id);
 static int parse_remote_data(NiceAgent *agent, guint stream_id,
@@ -150,29 +147,27 @@ if(!strcmp(argv[1],"1"))
     return EXIT_FAILURE;
   }
 
-  if(argv[1] == 0 && argc < 3 ){
-    g_debug("Please specify a file as argument when running in sender mode.");
-    return EXIT_FAILURE;
-  }
-
   if (argc > 2) {
     stun_addr = argv[2];
-    stun_port = 3478; //atoi(argv[3])
-    g_debug("Using stun server: [%s:%d]\n", stun_addr, stun_port);
+    stun_port = 19302; //atoi(argv[3])
+    g_debug("Using stun server '[%s]:%u'\n", stun_addr, stun_port);
+
     if (argc > 3){
-      hasFileAsInut = TRUE;
+      has_file_input = TRUE;
       file_name = argv[3];
-      io_in_file = g_io_channel_new_file (file_name, "r", &err);
-      if (!io_in_file){
+      in = fopen (file_name, "r");
+
+      if (!in){
         g_debug("Error: %s %s\n", (err)->message, file_name);
-        return FALSE;
+        return EXIT_FAILURE;
       } else {
-        if (stat(argv[3], &stbuf) == 0){
+
+        if (stat(file_name, &stbuf) == 0){
           file_size = stbuf.st_size;
-          g_debug("File to be transferred: [%s], size:[%zu]", argv[3], file_size);
+          g_debug("File to be transferred: [%s], size:[%d]", file_name, file_size);
         } else {
           g_debug("Unable to stat() the file size.");
-          return EXIT_FAILURE;
+          return;
         }
       }
       //out = fopen (argv[2], "w");
@@ -241,12 +236,12 @@ if(!strcmp(argv[1],"1"))
   return EXIT_SUCCESS;
 }
 
-static void cb_writable (NiceAgent*agent, guint s_id, guint component_id,
+static void cb_writable (NiceAgent*agent, guint stream_id, guint component_id,
     gpointer user_data)
 {
   guint *ls_id = user_data;
 
-  if (s_id == *ls_id && component_id == NICE_COMPONENT_TYPE_RTP) {
+  if (stream_id == *ls_id && component_id == NICE_COMPONENT_TYPE_RTCP) {
     g_debug ("Transport is now writable, stopping mainloop");
     *ls_id = 0;
   }
@@ -330,7 +325,7 @@ g_debug("writable_cb2");
          break;
     }
 
-    /ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
+    /*ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
     if (ret == -1) {
       gboolean reliable = FALSE;
       g_object_get (G_OBJECT (lagent), "reliable", &reliable, NULL);
@@ -354,6 +349,58 @@ g_debug("writable_cb2");
   return TRUE;
 }
 
+int getFile(char *name)
+{
+
+  GFile *f = g_file_new_for_uri(name);
+  GFileInputStream *fis = NULL;
+  GDataInputStream* dis = NULL;
+  GError *err = NULL;
+  //char buffer[2048];
+  char *buffer;
+  size_t length;
+  int ret = -1;
+
+  GFileInfo *info;
+
+  int total_size = -1;
+
+  /* get input stream */
+  fis = g_file_read(f, NULL, &err);
+
+  if (err != NULL) {
+      fprintf(stderr, "ERROR: opening %s\n", name);
+      g_object_unref(f);
+      return -1;
+  }
+
+  info = g_file_input_stream_query_info (G_FILE_INPUT_STREAM (fis),G_FILE_ATTRIBUTE_STANDARD_SIZE,NULL, &err);
+  if (info)
+  {
+      if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
+          total_size = g_file_info_get_size (info);
+          printf( "total_size = %d\n", total_size);
+          g_object_unref (info);
+  }
+
+  // fill buffer
+  if(total_size > 0){
+      buffer = (char *) malloc(sizeof(char) * total_size);
+      memset(buffer, 0, total_size);
+      if ((length = g_input_stream_read (G_INPUT_STREAM(fis),
+                  buffer, total_size, NULL, &err)) != -1) {
+              printf( "reading file\n");
+      }
+      printf( "File length = %d\n", length);
+
+          ret = 0;
+      }
+      // close streams
+      g_object_unref(fis);
+      g_object_unref(f);   
+      return ret;
+  }
+
 static void
 cb_component_state_changed(NiceAgent *agent, guint _stream_id, guint component_id, guint state, gpointer data)
 {
@@ -369,17 +416,16 @@ cb_component_state_changed(NiceAgent *agent, guint _stream_id, guint component_i
       gchar ipaddr[INET6_ADDRSTRLEN];
 
       nice_address_to_string(&local->addr, ipaddr);
-      printf("\nNegotiation complete: ([%s]:%d,",
-          ipaddr, nice_address_get_port(&local->addr));
+      printf("\nNegotiation complete: ([%s]:%d,",ipaddr, nice_address_get_port(&local->addr));
+
       nice_address_to_string(&remote->addr, ipaddr);
       printf(" [%s]:%d)\n", ipaddr, nice_address_get_port(&remote->addr));
     }
 
     // Listen to stdin and send data written to it
-    if(hasFileAsInut == TRUE){
-      printf("\nStart transferring file... \n");
-      
-      g_io_add_watch(io_in_file, G_IO_IN, fileio_send_data_cb, agent);
+    if(has_file_input == TRUE){
+      printf("\nStart transferring file... \n");      
+      g_io_add_watch(in, G_IO_IN, fileio_send_data_cb, agent);
     } else {
       printf("\nSend lines to remote (Ctrl-D to quit):\n");
       g_io_add_watch(io_stdin, G_IO_IN, stdin_send_data_cb, agent);
@@ -416,69 +462,62 @@ static gboolean
 fileio_send_data_cb (GIOChannel *source, GIOCondition cond, gpointer data)
 {
   NiceAgent *agent = data;
+  gchar *line = NULL;
   //file descriptor
-  gsize nbytes = 0;
-  gint sent = 0;
-  gchar *file_chunk = malloc(CHUNK_SIZE);
-
-  GError *err = NULL;
-  GIOStatus ret;
-  gboolean reliable = FALSE;
+  char *file_chunk = malloc(CHUNK_SIZE);
+  size_t nbytes = 0;
+  int i=0;
+  int sent;
 
   memset(file_chunk,0,CHUNK_SIZE);
 
-  //while ( (nbytes = fread(file_chunk, sizeof(char), CHUNK_SIZE, io_in_file)) > 0) {
-  do {
-
-    g_debug ("begin nbytes:[%d]", nbytes);
-    ret = g_io_channel_read_chars(io_in_file, (gchar*) file_chunk, CHUNK_SIZE, &nbytes, &err);
-    g_debug ("ret:[%d], nbytes:[%d]", ret, nbytes);
-
-    if(ret != G_IO_STATUS_EOF){
-      sent = nice_agent_send (agent, stream_id, NICE_COMPONENT_TYPE_RTCP, nbytes, file_chunk);
-      g_debug ("sent:[%d], nbytes:[%d]", sent, nbytes);
-      if(file_size>sent && sent != -1) file_size-=sent;
-      else file_size=0;
-
-      g_debug ("file buffer read: [%zu], left agent sent: [%d] bytes, remaining/total size: [%zu/%d]", nbytes, (int)sent, file_size, (int)stbuf.st_size);
-      
-      if (sent == -1){
-        g_debug("sent == -1, reset to 0");
-        sent = 0;
-      }
-
-      //entering reliable mode
-      if (sent < nbytes) {
-        g_debug("sent:[%d], nbytes:[%zu], filesize:[%zu]", sent, nbytes, file_size);
-
-        
-        g_object_get (G_OBJECT (agent), "reliable", &reliable, NULL);
-        g_debug ("Sending data returned -1 in %s mode", reliable?"reliable":"non-reliable");
-        if (reliable) {
-          gulong signal_handler;
-          guint ls_id_copy = stream_id;
-          signal_handler = g_signal_connect (G_OBJECT (agent), "reliable-transport-writable", G_CALLBACK (cb_writable), &ls_id_copy);
-          g_debug ("Running mainloop until transport is writable");
-          while (ls_id_copy == stream_id)
-            g_main_context_iteration (NULL, TRUE);
-          g_signal_handler_disconnect(G_OBJECT (agent), signal_handler);
-          sent = nice_agent_send (agent, stream_id, NICE_COMPONENT_TYPE_RTCP, (nbytes - sent), file_chunk+sent);
-
-          if(file_size>sent && sent != -1) file_size-=sent;
-          else file_size=0;
-
-          g_debug ("reliable: left agent resent: [%d] bytes, remaining/total size: [%zu/%d]", (int)sent, file_size, (int)stbuf.st_size);
-        }
-      }
-    } else {
-      g_print("g_io_channel_read_chars: %s\n", err->message);
-      nice_agent_send(agent, stream_id, 1, 1, "\0");
-      g_main_loop_quit (gloop);
+  while ( (nbytes = fread(file_chunk, sizeof(char), CHUNK_SIZE, in)) > 0) {
+    sent = nice_agent_send (agent, stream_id, NICE_COMPONENT_TYPE_RTCP, nbytes, file_chunk);
+    if(file_size>sent && sent != -1) file_size-=sent;
+    else file_size=0;
+    g_debug ("file buffer read: [%zu], left agent sent: [%d] bytes, remaining/total size: [%zu/%d]", nbytes, (int)sent, file_size, (int)stbuf.st_size);
+    
+    if (sent == -1){
+      g_debug("sent == -1, reset to 0");
+      sent = 0;
     }
-  } while(nbytes > 0);
+
+    //entering reliable mode
+    if (sent < nbytes) {
+      g_debug("sent:[%d], nbytes:[%zu], filesize:[%d]", sent, nbytes, file_size);
+
+      gboolean reliable = FALSE;
+      g_object_get (G_OBJECT (agent), "reliable", &reliable, NULL);
+      g_debug ("Sending data returned -1 in %s mode", reliable?"reliable":"non-reliable");
+      if (reliable) {
+        gulong signal_handler;
+        guint ls_id_copy = stream_id;
+        signal_handler = g_signal_connect (G_OBJECT (agent), "reliable-transport-writable", G_CALLBACK (cb_writable), &ls_id_copy);
+        g_debug ("Running mainloop until transport is writable");
+        while (ls_id_copy == stream_id)
+          g_main_context_iteration (NULL, TRUE);
+        g_signal_handler_disconnect(G_OBJECT (agent), signal_handler);
+        sent = nice_agent_send (agent, stream_id, NICE_COMPONENT_TYPE_RTP, (nbytes - sent), file_chunk+sent);
+        if(file_size>sent && sent != -1) file_size-=sent;
+        else file_size=0;
+        g_debug ("reliable: left agent resent: [%d] bytes, remaining/total size: [%zu/%d]", (int)sent, file_size, (int)stbuf.st_size);
+      }
+    }
+  }
+
+  /*if (g_io_channel_read_line (source, &line, NULL, NULL, NULL) == G_IO_STATUS_NORMAL) {
+    nice_agent_send(agent, stream_id, 1, strlen(line), line);
+    g_free (line);
+    printf("> ");
+    fflush (stdout);
+  } else {
+    nice_agent_send(agent, stream_id, 1, 1, "\0");
+    // Ctrl-D was pressed.
+    g_main_loop_quit (gloop);
+  }*/
+
   return TRUE;
 }
-
 
 static void
 cb_new_selected_pair(NiceAgent *agent, guint _stream_id,
@@ -489,20 +528,17 @@ cb_new_selected_pair(NiceAgent *agent, guint _stream_id,
 }
 
 static void
-cb_nice_recv(NiceAgent *agent, guint _stream_id, guint component_id, guint len, gchar *buf, gpointer data)
+cb_nice_recv(NiceAgent *agent, guint _stream_id, guint component_id,
+    guint len, gchar *buf, gpointer data)
 {
-  GError *err = NULL;
-  gchar *file_chunk = malloc(CHUNK_SIZE);
-  gsize nbytes = 0;
-  int bytes_written = 0, bytes_read = 0;
-
-  g_debug("cb_nice_recv, file_name:[%s]", file_name);
+  g_debug("cb_nice_recv");
   //send(sockfd,buf,sizeof(buf),0);
+  //g_debug ("test-fullmode:%s: %p, len:%d", G_STRFUNC, user_data, len);
+  FILE *file_received=fopen(file_name, "ab");
+
   /* XXX: dear compiler, these are for you: */
   (void)agent; (void)stream_id; (void)component_id; (void)buf;
 
-  //FILE *file_received=fopen(file_name, "ab");
-  io_in_file = g_io_channel_new_file (file_name, "ab", &err);
   /*
    * Lets ignore stun packets that got through
    */
@@ -517,23 +553,15 @@ cb_nice_recv(NiceAgent *agent, guint _stream_id, guint component_id, guint len, 
   if (GPOINTER_TO_UINT (data) == 2) {
     //g_debug ("right agent received %d bytes, stopping mainloop", len);
 
-    if(io_in_file) {
-      g_io_channel_write_chars(io_in_file, data, bytes_read, &bytes_written, &err);
-      if(err)
-      {
-        
-        return 1;
-      }
-
-
-      /*int written = fwrite(buf,sizeof(char),len,io_in_file);
+    if(file_received){
+      int written = fwrite(buf,sizeof(char),len,file_received);
       g_debug("cb_nice_recv: right agent received: [%d], file buffer written: [%d], remaining/total size: [%zu/%d]",len,written, (stbuf.st_size - global_ragent_read), (int)stbuf.st_size);
       //g_debug ("[%d] file read: [%zu], nice_agent_sent: [%d] bytes, remaining/total size: [%zu/%d]", j, nbytes, (int)sent, file_size, (int)stbuf.st_size);
       global_ragent_read += len;
-      fclose(io_in_file);*/
+      fclose(file_received);
 
-      //if(global_ragent_read == stbuf.st_size)
-        //time(&stop);
+      if(global_ragent_read == stbuf.st_size)
+        time(&stop);
     }
     else{ 
       //g_main_loop_quit (global_mainloop);
@@ -542,6 +570,7 @@ cb_nice_recv(NiceAgent *agent, guint _stream_id, guint component_id, guint len, 
     //g_debug ("cb_nice_recv: global_ragent_read: %d stbuf.st_size: %d", global_ragent_read, (int)stbuf.st_size);
     g_main_loop_quit (gloop);
   }
+
 
 }
 

@@ -176,6 +176,7 @@ static void cb_writable (NiceAgent*agent, guint stream_id, guint component_id,
   }
 }
 
+
 static void cb_nice_recv (NiceAgent *agent, guint stream_id, guint component_id, guint len, gchar *buf, gpointer user_data)
 {
   //g_debug ("test-fullmode:%s: %p, len:%d", G_STRFUNC, user_data, len);
@@ -202,7 +203,7 @@ static void cb_nice_recv (NiceAgent *agent, guint stream_id, guint component_id,
       int written = fwrite(buf,sizeof(char),len,file_received);
       g_debug("cb_nice_recv: right agent received: [%d], file buffer written: [%d], remaining/total size: [%zu/%d]",len,written, (stbuf.st_size - global_ragent_read), (int)stbuf.st_size);
       //g_debug ("[%d] file read: [%zu], nice_agent_sent: [%d] bytes, remaining/total size: [%zu/%d]", j, nbytes, (int)sent, file_size, (int)stbuf.st_size);
-      global_ragent_read += len;
+      //global_ragent_read += len;
       fclose(file_received);
 
       if(global_ragent_read == stbuf.st_size)
