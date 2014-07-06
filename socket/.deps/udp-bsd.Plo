@@ -1,21 +1,25 @@
-udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
- /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/predefs.h \
+udp-bsd.lo: udp-bsd.c /usr/include/stdc-predef.h \
+ /usr/include/x86_64-linux-gnu/bits/predefs.h ../config.h \
+ /usr/include/string.h /usr/include/features.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h \
  /usr/include/xlocale.h /usr/include/x86_64-linux-gnu/bits/string.h \
  /usr/include/x86_64-linux-gnu/bits/string2.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/stdlib.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/byteswap-16.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/string3.h /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/uio.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/sys/select.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
@@ -24,7 +28,6 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
- /usr/include/x86_64-linux-gnu/bits/uio.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/fcntl2.h udp-bsd.h socket.h \
  ../agent/agent.h /usr/local/include/glib-2.0/glib-object.h \
@@ -34,15 +37,15 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
  /usr/local/include/glib-2.0/glib/gtypes.h \
  /usr/local/lib/glib-2.0/include/glibconfig.h \
  /usr/local/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include/float.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h \
  /usr/local/include/glib-2.0/glib/gversionmacros.h \
  /usr/include/x86_64-linux-gnu/bits/timex.h \
  /usr/local/include/glib-2.0/glib/garray.h \
@@ -50,7 +53,7 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
  /usr/local/include/glib-2.0/glib/gthread.h \
  /usr/local/include/glib-2.0/glib/gatomic.h \
  /usr/local/include/glib-2.0/glib/gerror.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h \
  /usr/local/include/glib-2.0/glib/gquark.h \
  /usr/local/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum.h \
@@ -286,27 +289,30 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/sys/uio.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
  /usr/include/x86_64-linux-gnu/asm/socket.h \
  /usr/include/asm-generic/socket.h \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdint.h /usr/include/stdint.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/arpa/inet.h \
  ../agent/candidate.h ../agent/debug.h ../agent/address.h tcp-bsd.h \
  pseudossl.h socks5.h http.h turn.h ../stun/stunmessage.h \
- /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdbool.h ../stun/constants.h \
+ /usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h ../stun/constants.h \
  ../stun/stunagent.h ../stun/stunmessage.h ../stun/debug.h tcp-turn.h
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 ../config.h:
 
 /usr/include/string.h:
 
 /usr/include/features.h:
-
-/usr/include/x86_64-linux-gnu/bits/predefs.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
@@ -316,7 +322,7 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include/stddef.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h:
 
 /usr/include/xlocale.h:
 
@@ -333,6 +339,8 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap-16.h:
 
 /usr/include/stdlib.h:
 
@@ -354,6 +362,10 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
 
 /usr/include/x86_64-linux-gnu/bits/fcntl.h:
 
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+
+/usr/include/x86_64-linux-gnu/bits/uio.h:
+
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/time.h:
@@ -371,8 +383,6 @@ udp-bsd.lo: udp-bsd.c ../config.h /usr/include/string.h \
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/x86_64-linux-gnu/bits/uio.h:
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
 
@@ -398,9 +408,9 @@ socket.h:
 
 /usr/local/include/glib-2.0/glib/gmacros.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include-fixed/syslimits.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
@@ -416,7 +426,7 @@ socket.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include/float.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/float.h:
 
 /usr/local/include/glib-2.0/glib/gversionmacros.h:
 
@@ -432,7 +442,7 @@ socket.h:
 
 /usr/local/include/glib-2.0/glib/gerror.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdarg.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdarg.h:
 
 /usr/local/include/glib-2.0/glib/gquark.h:
 
@@ -914,6 +924,8 @@ socket.h:
 
 /usr/include/x86_64-linux-gnu/bits/socket.h:
 
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
 /usr/include/x86_64-linux-gnu/bits/sockaddr.h:
 
 /usr/include/x86_64-linux-gnu/asm/socket.h:
@@ -928,7 +940,7 @@ socket.h:
 
 /usr/include/netinet/in.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdint.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdint.h:
 
 /usr/include/stdint.h:
 
@@ -956,7 +968,7 @@ turn.h:
 
 ../stun/stunmessage.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdbool.h:
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stdbool.h:
 
 ../stun/constants.h:
 

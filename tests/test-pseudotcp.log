@@ -1,40 +1,40 @@
-** (process:23236): DEBUG: Left: 0x145b260. Right: 0x145b2a0
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: State: TCP_SYN_SENT
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: [cwnd: 360  nWindow: 4  nInFlight: 0 nAvailable: 4 nQueued: 4 nEmpty: 92156  ssthresh: 61440]
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: <-- <CONV=0><FLG=2><SEQ=0:4><ACK=0><WND=61440><TS=3724><TSR=0><LEN=4>
-** (process:23236): DEBUG: Socket 0x145b260(1) Writing : 28 bytes
-** (process:23236): DEBUG: Socket 0x145b260: Adjuting clock to 3000 ms
-** (process:23236): DEBUG: Socket 0x145b2a0: Adjuting clock to 4000 ms
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: --> <CONV=0><FLG=2><SEQ=0:4><ACK=0><WND=61440><TS=3724><TSR=0><LEN=4>
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: [cwnd: 360  nWindow: 360  nInFlight: 0 nAvailable: 4 nQueued: 4 nEmpty: 92156  ssthresh: 61440]
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: <-- <CONV=0><FLG=2><SEQ=0:4><ACK=4><WND=61440><TS=3724><TSR=3724><LEN=4>
-** (process:23236): DEBUG: Socket 0x145b2a0(2) Writing : 28 bytes
-** (process:23236): DEBUG: Socket 0x145b2a0: Adjuting clock to 3000 ms
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: --> <CONV=0><FLG=2><SEQ=0:4><ACK=4><WND=61440><TS=3724><TSR=3724><LEN=4>
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: State: TCP_ESTABLISHED
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: Adjusting mss to 1380 bytes
-** (process:23236): DEBUG: Socket 0x145b260 Opened
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: [cwnd: 1380  nWindow: 4  nInFlight: 4 nAvailable: 0 nQueued: 30 nEmpty: 92130  ssthresh: 61440]
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: Closing socket 0x145b260 : gracefully
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: rtt: 0   srtt: 0  rto: 250
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: [cwnd: 2760  nWindow: 2760  nInFlight: 0 nAvailable: 26 nQueued: 26 nEmpty: 92134  ssthresh: 61440]
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: <-- <CONV=0><FLG=0><SEQ=4:30><ACK=4><WND=61440><TS=3724><TSR=3724><LEN=26>
-** (process:23236): DEBUG: Socket 0x145b260(3) Writing : 50 bytes
-** (process:23236): DEBUG: Socket 0x145b260: Adjuting clock to 250 ms
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: --> <CONV=0><FLG=0><SEQ=4:30><ACK=4><WND=61440><TS=3724><TSR=3724><LEN=26>
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: rtt: 0   srtt: 0  rto: 250
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: State: TCP_ESTABLISHED
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: Adjusting mss to 1380 bytes
-** (process:23236): DEBUG: Socket 0x145b2a0 Opened
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: [cwnd: 1380  nWindow: 1380  nInFlight: 0 nAvailable: 0 nQueued: 0 nEmpty: 92160  ssthresh: 61440]
-** (process:23236): DEBUG: Socket 0x145b2a0 Readable
-** (process:23236): DEBUG: Read 26 bytes
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: Closing socket 0x145b2a0 : gracefully
-** (process:23236): DEBUG: Socket 0x145b2a0: Adjuting clock to 100 ms
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b2a0: <-- <CONV=0><FLG=0><SEQ=4:4><ACK=30><WND=61414><TS=3825><TSR=3724><LEN=0>
-** (process:23236): DEBUG: Socket 0x145b2a0(3) Writing : 24 bytes
-** (process:23236): DEBUG: Socket 0x145b2a0 should be destroyed, it's done
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: --> <CONV=0><FLG=0><SEQ=4:4><ACK=30><WND=61414><TS=3825><TSR=3724><LEN=0>
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: rtt: 101   srtt: 101  rto: 301
-(process:23236): libnice-DEBUG: PseudoTcpSocket 0x145b260: [cwnd: 4140  nWindow: 4140  nInFlight: 0 nAvailable: 0 nQueued: 0 nEmpty: 92160  ssthresh: 61440]
-** (process:23236): DEBUG: Socket 0x145b260 should be destroyed, it's done
+** (process:17914): DEBUG: Left: 0x1193260. Right: 0x11932a0
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: State: TCP_SYN_SENT
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: [cwnd: 360  nWindow: 4  nInFlight: 0 nAvailable: 4 nQueued: 4 nEmpty: 92156  ssthresh: 61440]
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: <-- <CONV=0><FLG=2><SEQ=0:4><ACK=0><WND=61440><TS=5591><TSR=0><LEN=4>
+** (process:17914): DEBUG: Socket 0x1193260(1) Writing : 28 bytes
+** (process:17914): DEBUG: Socket 0x1193260: Adjuting clock to 3000 ms
+** (process:17914): DEBUG: Socket 0x11932a0: Adjuting clock to 4000 ms
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: --> <CONV=0><FLG=2><SEQ=0:4><ACK=0><WND=61440><TS=5591><TSR=0><LEN=4>
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: [cwnd: 360  nWindow: 360  nInFlight: 0 nAvailable: 4 nQueued: 4 nEmpty: 92156  ssthresh: 61440]
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: <-- <CONV=0><FLG=2><SEQ=0:4><ACK=4><WND=61440><TS=5591><TSR=5591><LEN=4>
+** (process:17914): DEBUG: Socket 0x11932a0(2) Writing : 28 bytes
+** (process:17914): DEBUG: Socket 0x11932a0: Adjuting clock to 3000 ms
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: --> <CONV=0><FLG=2><SEQ=0:4><ACK=4><WND=61440><TS=5591><TSR=5591><LEN=4>
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: State: TCP_ESTABLISHED
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: Adjusting mss to 1380 bytes
+** (process:17914): DEBUG: Socket 0x1193260 Opened
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: [cwnd: 1380  nWindow: 4  nInFlight: 4 nAvailable: 0 nQueued: 30 nEmpty: 92130  ssthresh: 61440]
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: Closing socket 0x1193260 : gracefully
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: rtt: 0   srtt: 0  rto: 250
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: [cwnd: 2760  nWindow: 2760  nInFlight: 0 nAvailable: 26 nQueued: 26 nEmpty: 92134  ssthresh: 61440]
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: <-- <CONV=0><FLG=0><SEQ=4:30><ACK=4><WND=61440><TS=5591><TSR=5591><LEN=26>
+** (process:17914): DEBUG: Socket 0x1193260(3) Writing : 50 bytes
+** (process:17914): DEBUG: Socket 0x1193260: Adjuting clock to 250 ms
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: --> <CONV=0><FLG=0><SEQ=4:30><ACK=4><WND=61440><TS=5591><TSR=5591><LEN=26>
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: rtt: 0   srtt: 0  rto: 250
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: State: TCP_ESTABLISHED
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: Adjusting mss to 1380 bytes
+** (process:17914): DEBUG: Socket 0x11932a0 Opened
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: [cwnd: 1380  nWindow: 1380  nInFlight: 0 nAvailable: 0 nQueued: 0 nEmpty: 92160  ssthresh: 61440]
+** (process:17914): DEBUG: Socket 0x11932a0 Readable
+** (process:17914): DEBUG: Read 26 bytes
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: Closing socket 0x11932a0 : gracefully
+** (process:17914): DEBUG: Socket 0x11932a0: Adjuting clock to 100 ms
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x11932a0: <-- <CONV=0><FLG=0><SEQ=4:4><ACK=30><WND=61414><TS=5691><TSR=5591><LEN=0>
+** (process:17914): DEBUG: Socket 0x11932a0(3) Writing : 24 bytes
+** (process:17914): DEBUG: Socket 0x11932a0 should be destroyed, it's done
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: --> <CONV=0><FLG=0><SEQ=4:4><ACK=30><WND=61414><TS=5691><TSR=5591><LEN=0>
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: rtt: 101   srtt: 101  rto: 301
+(process:17914): libnice-DEBUG: PseudoTcpSocket 0x1193260: [cwnd: 4140  nWindow: 4140  nInFlight: 0 nAvailable: 0 nQueued: 0 nEmpty: 92160  ssthresh: 61440]
+** (process:17914): DEBUG: Socket 0x1193260 should be destroyed, it's done

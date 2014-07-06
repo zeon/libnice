@@ -130,14 +130,14 @@ am__installdirs = "$(DESTDIR)$(gstplugindir)" \
 	"$(DESTDIR)$(gstplugin010dir)"
 LTLIBRARIES = $(gstplugin_LTLIBRARIES) $(gstplugin010_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-libgstnice_la_DEPENDENCIES = $(COMMON_LIBADD) \
-	$(am__DEPENDENCIES_1)
+#libgstnice_la_DEPENDENCIES = $(COMMON_LIBADD) \
+#	$(am__DEPENDENCIES_1)
 am__libgstnice_la_SOURCES_DIST = gstnicesrc.h gstnicesrc.c \
 	gstnicesink.h gstnicesink.c gstnice.h gstnice.c
-am_libgstnice_la_OBJECTS =  \
-	libgstnice_la-gstnicesrc.lo \
-	libgstnice_la-gstnicesink.lo \
-	libgstnice_la-gstnice.lo
+#am_libgstnice_la_OBJECTS =  \
+#	libgstnice_la-gstnicesrc.lo \
+#	libgstnice_la-gstnicesink.lo \
+#	libgstnice_la-gstnice.lo
 libgstnice_la_OBJECTS = $(am_libgstnice_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -146,7 +146,7 @@ am__v_lt_1 =
 libgstnice_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libgstnice_la_CFLAGS) \
 	$(CFLAGS) $(libgstnice_la_LDFLAGS) $(LDFLAGS) -o $@
-am_libgstnice_la_rpath = -rpath $(gstplugindir)
+#am_libgstnice_la_rpath = -rpath $(gstplugindir)
 libgstnice010_la_DEPENDENCIES =  \
 	$(COMMON_LIBADD) $(am__DEPENDENCIES_1)
 am__libgstnice010_la_SOURCES_DIST = gstnicesrc.h gstnicesrc.c \
@@ -231,7 +231,7 @@ AR = ar
 AUTOCONF = autoconf
 AUTOHEADER = autoheader
 AUTOMAKE = automake-1.13
-AWK = gawk
+AWK = mawk
 CC = gcc
 CCACHE_DISABLE = 
 CCDEPMODE = depmode=gcc3
@@ -255,13 +255,13 @@ GLIB_LIBS = -pthread -L/usr/local/lib -lgthread-2.0 -lrt -lgio-2.0 -lgobject-2.0
 GREP = /bin/grep
 GST010_CFLAGS = -pthread -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include -I/usr/include/gstreamer-0.10 -I/usr/include/libxml2  
 GST010_LIBS = -pthread -L/usr/local/lib -lgstbase-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
-GST_CFLAGS = -pthread -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include -I/usr/include/gstreamer-1.0  
-GST_LIBS = -pthread -L/usr/local/lib -lgstbase-1.0 -lgstreamer-1.0 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
-GTKDOC_CHECK = /usr/bin/gtkdoc-check
+GST_CFLAGS = 
+GST_LIBS = 
+GTKDOC_CHECK = 
 GTKDOC_DEPS_CFLAGS = 
 GTKDOC_DEPS_LIBS = 
-GTKDOC_MKPDF = /usr/bin/gtkdoc-mkpdf
-GTKDOC_REBASE = /usr/bin/gtkdoc-rebase
+GTKDOC_MKPDF = 
+GTKDOC_REBASE = true
 GUPNP_CFLAGS = 
 GUPNP_LIBS = 
 HAVE_GUPNP = no
@@ -271,9 +271,9 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
+LD = /usr/bin/ld -m elf_i386
 LDFLAGS = 
-LIBNICE_CFLAGS = -DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30 -DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_36 -fno-strict-aliasing -Wall -Wextra -Wundef -Wnested-externs -Wwrite-strings -Wpointer-arith -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wno-unused-parameter -Wno-missing-field-initializers -Wdeclaration-after-statement -Wformat=2 -Wold-style-definition -Wcast-align -Wformat-nonliteral -Wformat-security -Wsign-compare -Wstrict-aliasing -Wshadow -Winline -Wpacked -Wmissing-format-attribute -Wmissing-noreturn -Winit-self -Wredundant-decls -Wmissing-include-dirs -Wunused-but-set-variable -Warray-bounds
+LIBNICE_CFLAGS = -DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_30 -DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_36 -fno-strict-aliasing -Wall -Wextra -Wundef -Wnested-externs -Wwrite-strings -Wpointer-arith -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wredundant-decls -Wno-unused-parameter -Wno-missing-field-initializers -Wdeclaration-after-statement -Wformat=2 -Wold-style-definition -Wcast-align -Wformat-nonliteral -Wformat-security -Wsign-compare -Wstrict-aliasing -Wshadow -Winline -Wpacked -Wmissing-format-attribute -Wmissing-noreturn -Winit-self -Wredundant-decls -Wmissing-include-dirs -Warray-bounds
 LIBNICE_LT_LDFLAGS = -version-info 14:1:4 -no-undefined
 LIBOBJS = 
 LIBRT = -lrt
@@ -308,10 +308,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.1.7
-abs_builddir = /var/www/libnice-0.1.7/gst
-abs_srcdir = /var/www/libnice-0.1.7/gst
-abs_top_builddir = /var/www/libnice-0.1.7
-abs_top_srcdir = /var/www/libnice-0.1.7
+abs_builddir = /root/libnice-0.1.7/gst
+abs_srcdir = /root/libnice-0.1.7/gst
+abs_top_builddir = /root/libnice-0.1.7
+abs_top_srcdir = /root/libnice-0.1.7
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -333,7 +333,7 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 gstplugin010dir = $(libdir)/gstreamer-0.10
-gstplugindir = $(libdir)/gstreamer-1.0
+gstplugindir = 
 host = x86_64-unknown-linux-gnu
 host_alias = 
 host_cpu = x86_64
@@ -342,7 +342,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /var/www/libnice-0.1.7/install-sh
+install_sh = ${SHELL} /root/libnice-0.1.7/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -378,18 +378,18 @@ COMMON_LIBADD = \
 
 
 # libgstnice
-gstplugin_LTLIBRARIES = libgstnice.la
-libgstnice_la_CFLAGS = $(AM_CFLAGS) $(GST_CFLAGS) -DGST_USE_UNSTABLE_API
-libgstnice_la_SOURCES = \
-	gstnicesrc.h \
-	gstnicesrc.c \
-	gstnicesink.h \
-	gstnicesink.c \
-	gstnice.h \
-	gstnice.c
+#gstplugin_LTLIBRARIES = libgstnice.la
+#libgstnice_la_CFLAGS = $(AM_CFLAGS) $(GST_CFLAGS) -DGST_USE_UNSTABLE_API
+#libgstnice_la_SOURCES = \
+#	gstnicesrc.h \
+#	gstnicesrc.c \
+#	gstnicesink.h \
+#	gstnicesink.c \
+#	gstnice.h \
+#	gstnice.c
 
-libgstnice_la_LIBADD = $(COMMON_LIBADD) $(GST_LIBS)
-libgstnice_la_LDFLAGS = -module -avoid-version
+#libgstnice_la_LIBADD = $(COMMON_LIBADD) $(GST_LIBS)
+#libgstnice_la_LDFLAGS = -module -avoid-version
 gstplugin010_LTLIBRARIES = libgstnice010.la
 libgstnice010_la_CFLAGS = $(AM_CFLAGS) $(GST010_CFLAGS)
 libgstnice010_la_SOURCES = \

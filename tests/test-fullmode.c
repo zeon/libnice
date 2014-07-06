@@ -42,12 +42,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <errno.h>
-#include <time.h>
-#include <sys/stat.h>
 
-#define CHUNK_SIZE 1024
 
 #define USE_TURN 0
 #define USE_LOOPBACK 1
@@ -74,9 +69,9 @@
 #undef USE_LOOPBACK
 #define USE_LOOPBACK 0
 
-#define TURN_IP "54.200.185.150"
-#define TURN_PORT 
-#define TURN_USER ""
+#define TURN_IP "209.85.163.126"
+#define TURN_PORT 443
+#define TURN_USER "ih9ppiM0P6vN34DB"
 #define TURN_PASS ""
 #define TURN_USER2 TURN_USER
 #define TURN_PASS2 TURN_PASS
@@ -139,14 +134,9 @@ static int global_lagent_cands = 0;
 static int global_ragent_cands = 0;
 static gint global_ragent_read = 0;
 static guint global_exit_when_ibr_received = 0;
-struct stat stbuf;
-struct tm* tm_info;
-time_t start = 0, stop = 0, elapsed =0;
-clock_t ticks; long count;
 
 static void priv_print_global_status (void)
 {
-  printf("Finished in about %.0f seconds. \n", difftime(stop, start));
   g_debug ("\tgathering_done=%d", global_lagent_gathering_done && global_ragent_gathering_done);
   g_debug ("\tlstate[rtp]=%d [rtcp]=%d", global_lagent_state[0], global_lagent_state[1]);
   g_debug ("\trstate[rtp]=%d [rtcp]=%d", global_ragent_state[0], global_ragent_state[1]);
@@ -176,11 +166,9 @@ static void cb_writable (NiceAgent*agent, guint stream_id, guint component_id,
   }
 }
 
-
 static void cb_nice_recv (NiceAgent *agent, guint stream_id, guint component_id, guint len, gchar *buf, gpointer user_data)
 {
-  //g_debug ("test-fullmode:%s: %p, len:%d", G_STRFUNC, user_data, len);
-  FILE *file_received=fopen("file-recv.zip", "ab");
+  g_debug ("test-fullmode:%s: %p", G_STRFUNC, user_data);
 
   /* XXX: dear compiler, these are for you: */
   (void)agent; (void)stream_id; (void)component_id; (void)buf;
@@ -190,30 +178,15 @@ static void cb_nice_recv (NiceAgent *agent, guint stream_id, guint component_id,
    */
   if (len < 8)
     return;
-  /*if (strncmp ("12345678", buf, 8))
-    return;*/
+  if (strncmp ("12345678", buf, 8))
+    return;
 
   if (component_id == 2)
     return;
 
   if (GPOINTER_TO_UINT (user_data) == 2) {
-    //g_debug ("right agent received %d bytes, stopping mainloop", len);
-
-    if(file_received){
-      int written = fwrite(buf,sizeof(char),len,file_received);
-      g_debug("cb_nice_recv: right agent received: [%d], file buffer written: [%d], remaining/total size: [%zu/%d]",len,written, (stbuf.st_size - global_ragent_read), (int)stbuf.st_size);
-      //g_debug ("[%d] file read: [%zu], nice_agent_sent: [%d] bytes, remaining/total size: [%zu/%d]", j, nbytes, (int)sent, file_size, (int)stbuf.st_size);
-      //global_ragent_read += len;
-      fclose(file_received);
-
-      if(global_ragent_read == stbuf.st_size)
-        time(&stop);
-    }
-    else{ 
-      //g_main_loop_quit (global_mainloop);
-      perror("ERROR OPENING FILE\n"); 
-    }
-    //g_debug ("cb_nice_recv: global_ragent_read: %d stbuf.st_size: %d", global_ragent_read, (int)stbuf.st_size);
+    g_debug ("right agent received %d bytes, stopping mainloop", len);
+    global_ragent_read = len;
     g_main_loop_quit (global_mainloop);
   }
 }
@@ -355,7 +328,7 @@ static void set_credentials (NiceAgent *lagent, guint lstream,
 static int run_full_test (NiceAgent *lagent, NiceAgent *ragent, NiceAddress *baseaddr, guint ready, guint failed)
 {
   guint ls_id, rs_id;
-  gint sent;
+  gint ret;
 
   /* XXX: dear compiler, this is for you */
   (void)baseaddr;
@@ -391,6 +364,7 @@ static int run_full_test (NiceAgent *lagent, NiceAgent *ragent, NiceAddress *bas
   nice_agent_set_relay_info(ragent, rs_id, 2,
       TURN_IP, TURN_PORT, TURN_USER2, TURN_PASS2, TURN_TYPE);
 #endif
+
 
   /* Gather candidates and test nice_agent_set_port_range */
   nice_agent_set_port_range (lagent, ls_id, 1, 10000, 10000);
@@ -464,7 +438,8 @@ static int run_full_test (NiceAgent *lagent, NiceAgent *ragent, NiceAddress *bas
 
   /* step: run mainloop until local candidates are ready
    *       (see timer_cb() above) */
-  if (global_lagent_gathering_done != TRUE || global_ragent_gathering_done != TRUE) {
+  if (global_lagent_gathering_done != TRUE ||
+      global_ragent_gathering_done != TRUE) {
     g_debug ("test-fullmode: Added streams, running mainloop until 'candidate-gathering-done'...");
     g_main_loop_run (global_mainloop);
     g_assert (global_lagent_gathering_done == TRUE);
@@ -490,65 +465,32 @@ static int run_full_test (NiceAgent *lagent, NiceAgent *ragent, NiceAddress *bas
   g_assert (global_ragent_ibr_received == TRUE);
 
   /* note: test payload send and receive */
-  FILE* fd;
-  char *file_chunk = malloc(CHUNK_SIZE);
-  size_t nbytes = 0;
-  int i,j=0;
-  off_t file_size;
-  
-
-  if (stat("file.zip", &stbuf) == 0)
-    file_size = stbuf.st_size;
-
-  fd = fopen("file.zip", "rb");
-  if(fd == NULL)
-    return;
-
-  memset(file_chunk,0,CHUNK_SIZE);
-  
-  //g_debug("1 before pos:[%ld]", ftell (fd));
-  time(&start);
-
   global_ragent_read = 0;
-  while ( (nbytes = fread(file_chunk, sizeof(char), CHUNK_SIZE, fd)) > 0) {
-    sent = nice_agent_send (lagent, ls_id, NICE_COMPONENT_TYPE_RTP, nbytes, file_chunk);
-    if(file_size>sent && sent != -1) file_size-=sent;
-    else file_size=0;
-    g_debug ("file buffer read: [%zu], left agent sent: [%d] bytes, remaining/total size: [%zu/%d]", nbytes, (int)sent, file_size, (int)stbuf.st_size);
-    
-    if (sent == -1){
-      g_debug("sent == -1, reset to 0");
-      sent = 0;
-    }
+  ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
+  if (ret == -1)
+  {
+    gboolean reliable = FALSE;
+    g_object_get (G_OBJECT (lagent), "reliable", &reliable, NULL);
+    g_debug ("Sending data returned -1 in %s mode", reliable?"Reliable":"Non-reliable");
+    if (reliable) {
+      gulong signal_handler;
+      guint ls_id_copy = ls_id;
 
-    //entering reliable mode
-    if (sent < nbytes) {
-      g_debug("sent:[%d], nbytes:[%zu], filesize:[%d]", sent, nbytes, file_size);
+      signal_handler = g_signal_connect (G_OBJECT (lagent),
+          "reliable-transport-writable", G_CALLBACK (cb_writable), &ls_id_copy);
+      g_debug ("Running mainloop until transport is writable");
+      while (ls_id_copy == ls_id)
+        g_main_context_iteration (NULL, TRUE);
+      g_signal_handler_disconnect(G_OBJECT (lagent), signal_handler);
 
-
-      gboolean reliable = FALSE;
-      g_object_get (G_OBJECT (lagent), "reliable", &reliable, NULL);
-      g_debug ("Sending data returned -1 in %s mode", reliable?"reliable":"non-reliable");
-      if (reliable) {
-        gulong signal_handler;
-        guint ls_id_copy = ls_id;
-        signal_handler = g_signal_connect (G_OBJECT (lagent), "reliable-transport-writable", G_CALLBACK (cb_writable), &ls_id_copy);
-        g_debug ("Running mainloop until transport is writable");
-        while (ls_id_copy == ls_id)
-          g_main_context_iteration (NULL, TRUE);
-        g_signal_handler_disconnect(G_OBJECT (lagent), signal_handler);
-        sent = nice_agent_send (lagent, ls_id, NICE_COMPONENT_TYPE_RTP, (nbytes - sent), file_chunk+sent);
-        if(file_size>sent && sent != -1) file_size-=sent;
-        else file_size=0;
-        g_debug ("reliable: left agent resent: [%d] bytes, remaining/total size: [%zu/%d]", (int)sent, file_size, (int)stbuf.st_size);
-      }
+      ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
     }
   }
-  //g_assert (sent == stbuf.st_size);
-  //g_debug ("global_ragent_read: %d stbuf.st_size: %d", global_ragent_read, (int)stbuf.st_size);
-  while (global_ragent_read != stbuf.st_size)
+  g_debug ("Sent %d bytes", ret);
+  g_assert (ret == 16);
+  while (global_ragent_read != 16)
     g_main_context_iteration (NULL, TRUE);
-  //g_assert (global_ragent_read == stbuf.st_size);
+  g_assert (global_ragent_read == 16);
 
   g_debug ("test-fullmode: Ran mainloop, removing streams...");
 
@@ -569,7 +511,6 @@ static int run_full_test_delayed_answer (NiceAgent *lagent, NiceAgent *ragent, N
 {
   guint ls_id, rs_id;
   gint ret;
-  char buf[1024*1024*1024];
 
   /* XXX: dear compiler, this is for you */
   (void)baseaddr;
@@ -659,7 +600,7 @@ static int run_full_test_delayed_answer (NiceAgent *lagent, NiceAgent *ragent, N
 
   /* note: test payload send and receive */
   global_ragent_read = 0;
-  ret = nice_agent_send (lagent, ls_id, 1, sizeof(buf), buf);
+  ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
   if (ret == -1) {
     gboolean reliable = FALSE;
     g_object_get (G_OBJECT (lagent), "reliable", &reliable, NULL);
@@ -674,13 +615,13 @@ static int run_full_test_delayed_answer (NiceAgent *lagent, NiceAgent *ragent, N
         g_main_context_iteration (NULL, TRUE);
       g_signal_handler_disconnect(G_OBJECT (lagent), signal_handler);
 
-      ret = nice_agent_send (lagent, ls_id, 1, sizeof(buf), buf);
+      ret = nice_agent_send (lagent, ls_id, 1, 16, "1234567812345678");
     }
   }
   global_ragent_read = 0;
-  g_assert (ret == sizeof(buf));
+  g_assert (ret == 16);
   g_main_loop_run (global_mainloop);
-  g_assert (global_ragent_read == sizeof(buf));
+  g_assert (global_ragent_read == 16);
 
   g_debug ("test-fullmode: Ran mainloop, removing streams...");
 
@@ -883,8 +824,8 @@ int main (void)
 
   WSAStartup(0x0202, &w);
 #endif
-  //g_type_init ();
-  //g_thread_init(NULL);
+  g_type_init ();
+  g_thread_init(NULL);
 
   global_mainloop = g_main_loop_new (NULL, FALSE);
 
@@ -1001,12 +942,10 @@ int main (void)
   g_assert (global_lagent_state[1] == NICE_COMPONENT_STATE_READY);
   g_assert (global_ragent_state[0] == NICE_COMPONENT_STATE_READY);
   g_assert (global_ragent_state[1] == NICE_COMPONENT_STATE_READY);
-  return;
   /* When using TURN, we get peer reflexive candidates for the host cands
      that we removed so we can get another new_selected_pair signal later
      depending on timing/racing, we could double (or not) the amount we expected
   */
-#if 0
 #if !(USE_TURN)
   /* note: verify that correct number of local candidates were reported */
     g_assert (global_lagent_cands == 2);
@@ -1027,7 +966,6 @@ int main (void)
      that we removed so we can get another new_selected_pair signal later
      depending on timing/racing, we could double (or not) the amount we expected
   */
-
 #if !(USE_TURN)
   /* note: verify that correct number of local candidates were reported */
   g_assert (global_lagent_cands == 2);
@@ -1131,5 +1069,4 @@ int main (void)
   WSACleanup();
 #endif
   return result;
-#endif
 }

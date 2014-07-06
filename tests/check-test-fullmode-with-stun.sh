@@ -12,8 +12,8 @@ echo "Starting ICE full-mode with STUN unit test."
 set -x
 pidfile=./stund.pid
 
-export NICE_STUN_SERVER=54.200.185.150
-export NICE_STUN_SERVER_PORT=3478
+export NICE_STUN_SERVER=127.0.0.1
+export NICE_STUN_SERVER_PORT=3800
 
 echo "Launching stund on port ${NICE_STUN_SERVER_PORT}."
 

@@ -17,7 +17,7 @@ old_library='libgstnice010.a'
 inherited_linker_flags=' -pthread'
 
 # Libraries that this one depends upon.
-dependency_libs=' /usr/local/lib/libnice.la -L/usr/local/lib /usr/local/lib/libgio-2.0.la -lz -lresolv /usr/lib/x86_64-linux-gnu/libgstbase-0.10.la /usr/lib/x86_64-linux-gnu/libgstreamer-0.10.la /usr/local/lib/libgobject-2.0.la -lffi /usr/local/lib/libgmodule-2.0.la -ldl /usr/local/lib/libgthread-2.0.la -lxml2 /usr/local/lib/libglib-2.0.la -lpthread -lrt'
+dependency_libs=' /usr/local/lib/libnice.la -L/usr/local/lib /usr/local/lib/libgio-2.0.la -lz -lresolv /usr/lib/libgstbase-0.10.la /usr/lib/libgstreamer-0.10.la /usr/local/lib/libgobject-2.0.la -lffi /usr/local/lib/libgmodule-2.0.la -ldl /usr/local/lib/libgthread-2.0.la /usr/lib/libxml2.la /usr/local/lib/libglib-2.0.la -lpthread -lrt'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
